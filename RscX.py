@@ -66,7 +66,7 @@ def stop(update: Update, context: CallbackContext):
 
 def main():
     # Replace with your bot's API token
-    TOKEN = "YourTokenNigga"
+    TOKEN = "7576774302:AAFtHrzsAOmI58FM9kMgravElfXbOznwYzA"
     
     updater = Updater(TOKEN)
     dispatcher = updater.dispatcher

